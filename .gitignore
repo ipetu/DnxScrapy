@@ -2,15 +2,8 @@
 __pycache__/
 *.py[cod]
 *$py.class
-<<<<<<< HEAD
-<<<<<<< HEAD
 *.swp
 *.pyc
-=======
->>>>>>> 6b2e6c119f6fcaed420e29ea68e162c70bfece54
-=======
->>>>>>> dce9f13a03ae6700917c09ea8514b12049802158
-
 # C extensions
 *.so
 
@@ -19,7 +12,6 @@ __pycache__/
 env/
 build/
 develop-eggs/
-<<<<<<< HEAD
 #dist/
 downloads/
 eggs/
@@ -31,7 +23,6 @@ downloads/
 eggs/
 .eggs/
 lib/
->>>>>>> dce9f13a03ae6700917c09ea8514b12049802158
 lib64/
 parts/
 sdist/
@@ -67,8 +58,6 @@ coverage.xml
 
 # Django stuff:
 *.log
-<<<<<<< HEAD
-=======
 local_settings.py
 
 # Flask stuff:
@@ -77,20 +66,16 @@ instance/
 
 # Scrapy stuff:
 .scrapy
->>>>>>> dce9f13a03ae6700917c09ea8514b12049802158
-
 # Sphinx documentation
 docs/_build/
 
 # PyBuilder
 target/
-<<<<<<< HEAD
 .idea/*
-/settings.py
+/dqscrapy/settings.py
 
 #Ipython Notebook
 .ipynb_checkpoints
-=======
 
 # IPython Notebook
 .ipynb_checkpoints
@@ -113,4 +98,3 @@ ENV/
 
 # Rope project settings
 .ropeproject
->>>>>>> dce9f13a03ae6700917c09ea8514b12049802158
