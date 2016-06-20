@@ -16,3 +16,4 @@ class QsbkItem(Item):
     desc = Field()
     nick = Field()
     avatarUrl = Field()
+    qiniuUrl = Field()

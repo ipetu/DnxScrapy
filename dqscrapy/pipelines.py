@@ -18,14 +18,14 @@ class DqScrapyPipeline(object):
         # self.dbconn = connect('douqu', host='192.168.1.45:27017')
         # self.connction = pymongo.Connection("192.168.1.45", 27017)
         # self.douqu = self.connction.douqu
-        self.mongoClient = MongoClient("192.168.1.45", 27017)
+        self.mongoClient = MongoClient("192.168.1.104", 27017)
         self.db = self.mongoClient.douqu
 
     def close_spider(self, spider):
         pass
     def process_item(self, item, spider):
-        print 'wowowoowowoow'
+        # print 'wowowoowowoow'
         # downLoadUrl = item['avatarUrl']
-        # self.db.qsbk.insert(dict(item))
+        self.db.qsbk.insert(dict(item))
         # self.dbconn.in
         return item

@@ -132,7 +132,7 @@ class QiniuPipeline(FilesPipeline):
             key = tmp['key']
         else:
             bucket = self.bucket
-            key = '%s%s' % (self.key_prefix, request_fingerprint(request))
+            key = '%s%s' % (self.key_prefix, request_fingerprint(request))+'.jpg'
 
         return {'bucket': bucket, 'key': key}
 
@@ -155,7 +155,7 @@ class QiniuPipeline(FilesPipeline):
         # str = "http://image.tianjimedia.com/uploadImages/2015/129/56/J63MI042Z4P8.jpg"
         # media = "http://v.cctv.com/flash/mp4video6/TMS/2011/01/05/cf752b1c12ce452b3040cab2f90bc265_h264818000nero_aac32-1.mp4"
         key_generator = item.get(self.QINIU_KEY_GENERATOR_FIELD)
-        return [Request(x, meta={'qiniu_key_generator': key_generator}) for x in item.get(self.FILES_URLS_FIELD, [item['avatarUrl'][0]])]
+        return [Request(x, meta={'qiniu_key_generator': key_generator}) for x in item.get(self.FILES_URLS_FIELD, [item['avatarUrl']])]
 
     @classmethod
     def from_settings(cls, settings):
