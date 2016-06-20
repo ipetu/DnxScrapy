@@ -3,8 +3,10 @@
 # Created by Liuwf on 16/5/8
 from scrapy.spiders import CrawlSpider, Rule
 
-from dqscrapy.items import QsbkItem
 from scrapy.linkextractors import LinkExtractor
+
+from items import QsbkItem
+
 
 class DmozSpider(CrawlSpider):
     name = "qsbkcrawl"
