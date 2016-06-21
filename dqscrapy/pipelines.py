@@ -6,11 +6,12 @@
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 from pymongo import MongoClient
 
-from dqscrapy.impl import QiniuFilesStore
 
 
 class DqscrapyPipeline(object):
     def process_item(self, item, spider):
+        # print item.keys()
+        # print item.items()
         return item
 
 class DqScrapyPipeline(object):
@@ -24,8 +25,5 @@ class DqScrapyPipeline(object):
     def close_spider(self, spider):
         pass
     def process_item(self, item, spider):
-        # print 'wowowoowowoow'
-        # downLoadUrl = item['avatarUrl']
         self.db.qsbk.insert(dict(item))
-        # self.dbconn.in
         return item

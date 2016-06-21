@@ -25,27 +25,35 @@ class DmozSpider(CrawlSpider):
         items = []
         for site in sites:
             item = QsbkItem()
-            nameList = site.xpath('div[@class="content"]/text()').extract()
-            nickList = site.xpath('div[@class="author clearfix"]/a[2]/h2/text()').extract()
-            avatarUrlList = site.xpath('div[@class="author clearfix"]/a[1]/img/@src').extract()
-            name = ''
-            nick = ''
-            avatarUrl = ''
-            qiniuUrl = ''
-            if nameList is not None and len(nameList) > 0:
-                name = nameList[0]
-            if nickList is not None and len(nickList) > 0:
-                nick = nickList[0]
-            if avatarUrlList is not None and len(avatarUrlList) > 0:
-                from scrapy.utils.request import request_fingerprint
-                avatarUrl = avatarUrlList[0]
-                request = Request(avatarUrl)
-                key = '%s%s' % ('dq_', request_fingerprint(request))
-                qiniuUrl = "http://o8y576gfk.bkt.clouddn.com/" + key+'.jpg'
-
+            name= site.xpath('div[@class="content"]/text()').extract_first().encode('utf-8')
+            nick = site.xpath('div[@class="author clearfix"]/a[2]/h2/text()').extract_first().encode('utf-8')
+            avatarUrl = site.xpath('div[@class="author clearfix"]/a[1]/img/@src').extract_first().encode('utf-8')
+            # nameList = site.xpath('div[@class="content"]/text()').extract()
+            # nickList = site.xpath('div[@class="author clearfix"]/a[2]/h2/text()').extract()
+            # avatarUrlList = site.xpath('div[@class="author clearfix"]/a[1]/img/@src').extract()
+            # name = ''
+            # nick = ''
+            # avatarUrl = ''
+            # qiniuUrl = ''
+            # if nameList is not None and len(nameList) > 0:
+            #     name = nameList[0]
+            # if nickList is not None and len(nickList) > 0:
+            #     nick = nickList[0]
+            # if avatarUrlList is not None and len(avatarUrlList) > 0:
+            #
+            #     avatarUrl = avatarUrlList[0]
+            #     request = Request(avatarUrl)
+            #     key = '%s%s' % ('dq_', request_fingerprint(request))
+            #     qiniuUrl = "http://o8y576gfk.bkt.clouddn.com/" + key+'.jpg'
+            #
+            from scrapy.utils.request import request_fingerprint
+            request = Request(avatarUrl)
+            key = '%s%s' % ('dq_', request_fingerprint(request))
+            qiniuUrl = "http://o8y576gfk.bkt.clouddn.com/" + key+'.jpg'
             item['desc'] = name
             item['nick'] = nick
             item['avatarUrl'] = avatarUrl
             item['qiniuUrl'] = qiniuUrl
             items.append(item)
+            self.logger.warning("msg %s",qiniuUrl)
         return items
