@@ -1,5 +1,5 @@
 from proxy import PROXIES, FREE_PROXIES
-from agents import AGENTS
+from agents import  AGENTS_ALL
 import logging as log
 
 import random
@@ -58,5 +58,5 @@ class CustomHttpProxyMiddleware(object):
 
 class CustomUserAgentMiddleware(object):
     def process_request(self, request, spider):
-        agent = random.choice(AGENTS)
+        agent = random.choice(AGENTS_ALL)
         request.headers['User-Agent'] = agent

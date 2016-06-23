@@ -17,3 +17,10 @@ class QsbkItem(Item):
     nick = Field()
     avatarUrl = Field()
     qiniuUrl = Field()
+
+class NewQsbkItem(Item):
+    header = Field()
+    author = Field()
+    content = Field()
+    thumb = Field()
+    created_at = Field()
