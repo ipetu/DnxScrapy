@@ -5,7 +5,12 @@ If you want to disable it, plz configure settings.py
 PROXIES = [
     # {"ip_port": "127.0.0.1:8087"}, #goagent
     # {"ip_port": "127.0.0.1:8118"}, #tor via privoxy
-    {"ip_port": "43.245.202.120:8080"},  # tor via privoxy
+    # {"ip_port": "43.245.202.120:8080"},  # tor via privoxy
+    # {"ip_port": "218.202.111.10"},  # tor via privoxy
+    {"ip_port": "113.108.67.59:8080"},  # tor via privoxy
+    {"ip_port": "183.60.6.172:8080"},  # tor via privoxy
+    {"ip_port": "120.202.249.197:80"},  # tor via privoxy
+    {"ip_port": "120.202.249.202:8080"},  # tor via privoxy
 ]
 
 FREE_PROXIES = [
