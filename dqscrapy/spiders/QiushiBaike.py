@@ -5,9 +5,10 @@ import scrapy
 from datetime import datetime
 
 from items import NewQsbkItem
-
-
+pageValue = 0
+lastTimeStamp = ''
 class QiuShiBaiKe(scrapy.Spider):
+
     name = 'qiushibaike'
     allowed_domains = ['qiushibaike.com']
     start_urls = [
@@ -30,10 +31,23 @@ class QiuShiBaiKe(scrapy.Spider):
         # 得到下一页链接地址
         next_href = response.xpath(
             "//ul[contains(@class, 'pagination')]/li/a/span[contains(@class, 'next')]/../@href").extract_first()
-        url = "http://www.qiushibaike.com" + next_href.strip()
+        url = 'http://www.qiushibaike.com'
+        global pageValue
+        global lastTimeStamp
+        if next_href is not None:
+            splitList = next_href.split('?')
+            pageStr = splitList[0][-1]
+            lastTimeStamp = splitList[1]
+            url = "http://www.qiushibaike.com" + next_href.strip()
+            pageValue = int(pageStr)
+        else:
+            pageValue = pageValue+1
+            url = "http://www.qiushibaike.com/8hr/page/"+str(pageValue)+"/?"+lastTimeStamp
         current_pageNo = response.xpath(
             '//ul[contains(@class, "pagination")]/li/span[contains(@class, "current")]/text()').extract()
-        current = current_pageNo[0].strip()
+        current = 0
+        if current_pageNo is not None and len(current_pageNo)>0:
+            current = current_pageNo[0].strip()
         # 只爬取首页面的35页内容
         if (int(current) != 35):
-            yield scrapy.Request(url,  callback=self.parse)
+            yield scrapy.Request(url, dont_filter=True, callback=self.parse)
