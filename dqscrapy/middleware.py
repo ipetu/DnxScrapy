@@ -1,3 +1,4 @@
+from dbModels import ProxyModelDispatcher
 from proxy import PROXIES, FREE_PROXIES
 from agents import AGENTS_ALL
 import logging as log
@@ -58,12 +59,18 @@ class CustomUserAgentMiddleware(object):
     def process_request(self, request, spider):
         agent = random.choice(AGENTS_ALL)
         if self.use_proxy(request):
-            p = random.choice(PROXIES)
+            proxyModel = ProxyModelDispatcher.getProxyInfo()
+            proxyList = None
+            p = None
+            if proxyModel is not None:
+                proxyList = proxyModel['proxyList']
+            if proxyList is not None and len(proxyList) > 0:
+                p = random.choice(proxyList)
             # p = [
             #     {"ip_port": "113.108.67.59:8080"},  # tor via privoxy
             # ]
             try:
-                request.meta['proxy'] = "http://%s" % p['ip_port']
+                request.meta['proxy'] = "http://%s" % p['HTTP']
             except Exception, e:
                 pass
         request.headers['User-Agent'] = agent
