@@ -84,4 +84,4 @@ class CustomUserAgentMiddleware(object):
         #    return False
         # i = random.randint(1, 10)
         # return i <= 2
-        return True
+        return False
